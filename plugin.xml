@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-ua" version="0.0.1">
+  <name>Cordova Plugin UA</name>
+  <description>Cordova plugin for adding useragent</description>
+
+  <preference name="CUSTOM_USERAGENT" default="cordova-application" />
+
+  <!-- iOS -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="CDVUA">
+        <param name="onload" value="true" />
+        <param name="ios-package" value="CDVUA" />
+      </feature>
+    </config-file>
+
+    <config-file target="config.xml" parent="widget">
+      <preference name="CustomUserAgent" value="$CUSTOM_USERAGENT" />
+    </config-file>
+
+    <header-file src="src/ios/CDVUA-Bridging-Header.h" />
+    <source-file src="src/ios/CDVUA.swift" />
+    
+    <dependency id="cordova-plugin-add-swift-support" version="1.7.1"/>
+    <preference name="UseSwiftLanguageVersion" default="4" />
+  </platform>
+</plugin>
